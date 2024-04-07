@@ -65,6 +65,19 @@ class StorageTest {
         }
     }
 
+    public boolean isEmptyFile(String path) throws SecurityException {
+        try {
+            File jsonFile = new File(path);
+
+            if(jsonFile.length() == 0) {
+                return true;
+            }
+            return false;
+        } catch (SecurityException e) {
+            throw e;
+        }
+    }
+
 
     public boolean deleteFile(String path) {
         try {
@@ -182,6 +195,14 @@ class StorageTest {
                     workoutLogsManager));
         }
 
+        assertDoesNotThrow(() -> isEmptyFile(FILE_PATH));
+
+        if(isEmptyFile(FILE_PATH)) {
+            assertTrue(deleteFile(FILE_PATH));
+            assertDoesNotThrow(() -> storage.save(exerciseManager, workoutManager, weeklyProgramManager,
+                    workoutLogsManager));
+        }
+
         setUpStreams();
         assertDoesNotThrow(() -> storage.load(exerciseManager, workoutManager, weeklyProgramManager,
                 workoutLogsManager));
@@ -221,7 +242,7 @@ class StorageTest {
 
         assertNotEquals("",corruptFailureFile = findFileName(corruptFailureFile));
 
-        restoreOriginalFile(corruptFile, corruptFailureFile);
+        assertTrue(restoreOriginalFile(corruptFile, corruptFailureFile));
 
         restoreStreams();
 
@@ -252,7 +273,7 @@ class StorageTest {
 
         assertNotEquals("",duplicateExerciseFailureFile = findFileName(duplicateExerciseFailureFile));
 
-        restoreOriginalFile(duplicateExerciseFile, duplicateExerciseFailureFile);
+        assertTrue(restoreOriginalFile(duplicateExerciseFile, duplicateExerciseFailureFile));
 
         restoreStreams();
 
@@ -282,7 +303,7 @@ class StorageTest {
 
         assertNotEquals("",duplicateWorkoutFailureFile = findFileName(duplicateWorkoutFailureFile));
 
-        restoreOriginalFile(duplicateWorkoutFile, duplicateWorkoutFailureFile);
+        assertTrue(restoreOriginalFile(duplicateWorkoutFile, duplicateWorkoutFailureFile));
 
         restoreStreams();
 
@@ -312,7 +333,7 @@ class StorageTest {
 
         assertNotEquals("",workoutMissingFailureFile = findFileName(workoutMissingFailureFile));
 
-        restoreOriginalFile(workoutMissingFile, workoutMissingFailureFile);
+        assertTrue(restoreOriginalFile(workoutMissingFile, workoutMissingFailureFile));
 
         restoreStreams();
 
@@ -343,7 +364,7 @@ class StorageTest {
 
         assertNotEquals("",workoutExercisesMissingFailureFile = findFileName(workoutExercisesMissingFailureFile));
 
-        restoreOriginalFile(workoutExercisesMissingFile, workoutExercisesMissingFailureFile);
+        assertTrue(restoreOriginalFile(workoutExercisesMissingFile, workoutExercisesMissingFailureFile));
 
         restoreStreams();
 
@@ -374,7 +395,7 @@ class StorageTest {
 
         assertNotEquals("",logsExerciseFailFailureFile = findFileName(logsExerciseFailFailureFile));
 
-        restoreOriginalFile(logsExerciseFailFile, logsExerciseFailFailureFile);
+        assertTrue(restoreOriginalFile(logsExerciseFailFile, logsExerciseFailFailureFile));
 
         restoreStreams();
 
@@ -404,7 +425,7 @@ class StorageTest {
 
         assertNotEquals("",logsWorkoutFailFailureFile = findFileName(logsWorkoutFailFailureFile));
 
-        restoreOriginalFile(logsWorkoutFailFile, logsWorkoutFailFailureFile);
+        assertTrue(restoreOriginalFile(logsWorkoutFailFile, logsWorkoutFailFailureFile));
 
         restoreStreams();
 
