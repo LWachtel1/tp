@@ -87,8 +87,7 @@ class StorageTest {
 
         File jsonFile = new File(path);
         try (Scanner jsonScanner = new Scanner(jsonFile)) {
-
-        JSONObject jsonArchive = new JSONObject(jsonScanner.nextLine());
+            JSONObject jsonArchive = new JSONObject(jsonScanner.nextLine());
         } catch (FileNotFoundException|SecurityException e) {
             throw e;
         } catch (JSONException e) {
