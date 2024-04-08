@@ -8,12 +8,16 @@ import byteceps.ui.UserInterface;
 import byteceps.ui.strings.UiStrings;
 import byteceps.ui.strings.StorageStrings;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.io.File;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -77,6 +81,20 @@ class StorageTest {
         } catch (SecurityException e) {
             throw e;
         }
+    }
+
+    public boolean isCorruptedFile(String path) throws SecurityException, FileNotFoundException{
+
+        File jsonFile = new File(path);
+        try (Scanner jsonScanner = new Scanner(jsonFile)) {
+
+        JSONObject jsonArchive = new JSONObject(jsonScanner.nextLine());
+        } catch (FileNotFoundException|SecurityException e) {
+            throw e;
+        } catch (JSONException e) {
+            return true;
+        }
+        return false;
     }
 
 
@@ -196,9 +214,15 @@ class StorageTest {
                     workoutLogsManager));
         }
 
-        assertDoesNotThrow(() -> isEmptyFile(FILE_PATH));
 
-        if(isEmptyFile(FILE_PATH)) {
+        if (assertDoesNotThrow(() -> isEmptyFile(FILE_PATH))){
+            assertTrue(deleteFile(FILE_PATH));
+            assertDoesNotThrow(() -> storage.save(exerciseManager, workoutManager, weeklyProgramManager,
+                    workoutLogsManager));
+        }
+
+
+        if (assertDoesNotThrow(() -> isCorruptedFile(FILE_PATH))){
             assertTrue(deleteFile(FILE_PATH));
             assertDoesNotThrow(() -> storage.save(exerciseManager, workoutManager, weeklyProgramManager,
                     workoutLogsManager));
