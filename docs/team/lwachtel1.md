@@ -41,8 +41,12 @@ BYTE-CEPS is written in Java, and has approximately 5.6 kLoC.
 
 ### Documentation:
 + **Javadocs**: I added Javadocs to all non-trivial methods in the `HelpMenuManager` and `HelpValidator` classes, as well as adding class header comments for both classes.
-+ **UG**:
-+ **DG**:
++ **UG**: Added user guidance for the `Help Menu` feature:
+    + How to view the 3 different categories of help menu (each one corresponds to a different flag i.e., `exercise`, `workout` & `program`).
+    + How to view a specific functionality's corresponding corresponding command format.
++ **DG**: Added implementation details of the `Help Menu` feature: 
+    + descriptions of the execution processes for its two main functions: displaying numbered lists of flag-related functionalities and displaying a specific functionality's command format.
+    + accompanying sequence diagrams 
 
 ### Community:
 + Reported an above-average number of bugs during the PE dry run, 8 bugs, for the team working on MediTracker. 
