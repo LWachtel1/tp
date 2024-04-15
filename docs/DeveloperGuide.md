@@ -503,31 +503,31 @@ With ByteCeps, achieve your fitness objectives efficiently, effectively, and enj
 
 ## User Stories
 
-| Version | As a ... | I want to ...             | So that I can ...                                           |
-|---------|----------|---------------------------|-------------------------------------------------------------|
-| v1.0    | user     | create an exercise entry             | begin tracking my exercises                      |
-| v1.0    | user     | create edit an exercise entry        | modify an exercise to suit my needs              |
-| v1.0    | user     | delete an exercise entry             | remove unwanted exercises that I will not do     |
-| v1.0    | user     | add an exercise to a workout plan    | customise my workout plan                        |
-| v1.0    | user     | edit an exercise in a workout plan   | modify the workout plan to suit my needs         |
-| v1.0    | user     | delete an exercise from workout plan | remove unwanted exercises from a workout plan    |
-| v1.0    | user     | list all exercises in a workout plan | see the details of my planned exercises          |
-| v1.0    | user     | choose the workout plan for a day    | organise and structure my daily workout routine  |
-| v1.0    | user     | display my workout for the day       | know what exercises I should be doing today      |
-| v1.0    | user     | display my workout for the week      | have a weekly overview of what I should do       |
-| v2.0    | user     | export my workout plan to Json       | share with other fitness enthusiasts             |
-| v2.0    | user     | import my workout plan to Json       | bring my progress across devices                 |
-| v2.0    | user     | search for exercises                 | build my workout plan faster                     |
-| v2.0    | user     | search for workout plans             | identify which is the suitable workout for me    |
-| v2.0    | fitness enthusiast   | record the amount of weight lifted                             | track my progress over time                                       |
-| v2.0    | fitness enthusiast   | track the number of sets performed for each exercise session   | follow my workout plan effectively                                |
-| v2.0    | fitness professional | monitor the repetitions completed for each exercise            | evaluate my clients' performance and provide tailored feedback    |
-| v2.0    | fitness professional | log my exercise data for a specific date                       | accurately track my progress over time                            |
-| v2.0    | fitness professional | view a list of dates on which I have logged exercise entries   | track my consistency and adherence to my workout routine          |
-| v2.0    | fitness professional | review specific exercise logs for a particular date            | analyze my workout details and progress on that specific day      |
-| v2.1    | fitness professional |  log multiple sets of an exercise, including different weights and reps for each set            |  have a comprehensive log of my exercise sessions to monitor variations in my performance and strength training progress     |
-| v2.1    | fitness professional |  access and review historical workout data with detailed breakdowns by exercise, set, weight, and repetition            |  analyze trends in my performance and identify areas for improvement or adjustment in my training regime     |
-| v2.1    | fitness enthusiast |  be able to overwrite an incorrect log entry for a workout            |  ensure my workout history is accurate and reflects what I actually performed     |
+| Version | As a ... | I want to ...             | So that I can ...                   |
+|---------|----------|---------------------------|-------------------------------------|
+| v1.0    | user     | create an exercise entry             | begin tracking my exercises |
+| v1.0    | user     | create edit an exercise entry        | modify an exercise to suit my needs |
+| v1.0    | user     | delete an exercise entry             | remove unwanted exercises that I will not do |
+| v1.0    | user     | add an exercise to a workout plan    | customise my workout plan   |
+| v1.0    | user     | edit an exercise in a workout plan   | modify the workout plan to suit my needs |
+| v1.0    | user     | delete an exercise from workout plan | remove unwanted exercises from a workout plan |
+| v1.0    | user     | list all exercises in a workout plan | see the details of my planned exercises |
+| v1.0    | user     | choose the workout plan for a day    | organise and structure my daily workout routine |
+| v1.0    | user     | display my workout for the day       | know what exercises I should be doing today |
+| v1.0    | user     | display my workout for the week      | have a weekly overview of what I should do |
+| v2.0    | user     | export my workout plan to Json       | share with other fitness enthusiasts |
+| v2.0    | user     | import my workout plan to Json       | bring my progress across devices |
+| v2.0    | user     | search for exercises                 | build my workout plan faster |
+| v2.0    | user     | search for workout plans             | identify which is the suitable workout for me |
+| v2.0    | fitness enthusiast   | record the amount of weight lifted                             | track my progress over time         |
+| v2.0    | fitness enthusiast   | track the number of sets performed for each exercise session   | follow my workout plan effectively  |
+| v2.0    | fitness professional | monitor the repetitions completed for each exercise            | evaluate my performance     |
+| v2.0    | fitness professional | log my exercise data for a specific date                       | accurately track my progress over time |
+| v2.0    | fitness professional | view a list of dates on which I have logged exercise entries   | track my consistency and adherence to my workout routine |
+| v2.0    | fitness professional | review specific exercise logs for a particular date            | analyze my workout details and progress on that specific day |
+| v2.1    | fitness professional |  log multiple sets of an exercise, including different weights and reps for each set            |  have a comprehensive log of my exercise sessions to monitor variations in my performance and strength training progress |
+| v2.1    | fitness professional |  access and review historical workout data with detailed breakdowns by exercise, set, weight, and repetition            |  analyze trends in my performance and identify areas for improvement or adjustment in my training regime |
+| v2.1    | fitness enthusiast |  be able to overwrite an incorrect log entry for a workout            |  ensure my workout history is accurate and reflects what I actually performed |
 
 ## Non-Functional Requirements
 
