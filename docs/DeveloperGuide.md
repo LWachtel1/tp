@@ -19,7 +19,7 @@ If you plan to use IntelliJ IDEA (highly recommended):
 [se-edu/guides IDEA: Importing a Gradle project](https://se-education.org/guides/tutorials/intellijImportGradleProject.html)
 to import the project into IDEA.
 
-   :exclamation: **Note:** Importing a Gradle project is slightly different from importing a normal Java project.
+   **Note:** Importing a Gradle project is slightly different from importing a normal Java project.
 3. **Verify the setup**:
    * Run `ByteCeps.java` and try a few commands.
    * Run the tests using `./gradlew check` and ensure they all pass.
@@ -51,7 +51,7 @@ to import the project into IDEA.
       - [Viewing today's workout program](#viewing-todays-workout-program)
       - [Clearing a day in the program](#clearing-a-day-in-the-program)
     - [Help Menu](#help-menu)
-      - [Viewing an flag's help menu](#viewing-an-flags-help-menu)
+      - [Viewing a flag's help menu](#viewing-a-flags-help-menu)
       - [Viewing a specific command format](#viewing-a-specific-command-format)
     - [The `Storage` class](#the-storage-class)
       - [Overview: Saving data to `data.json`](#overview-saving-data-to-datajson)
@@ -91,7 +91,7 @@ Given below is a quick overview of the main components of ByteCeps and how they 
 
 The bulk of ByteCep's work is done by the following components:
 - [UserInterface](../src/main/java/byteceps/ui/UserInterface.java): Interacts with the user via the command line.
-- [Parser](../src/main/java/byteceps/commands/Parser.java): Parses the user's input as saves their inputs in the class.
+- [Parser](../src/main/java/byteceps/commands/Parser.java): Parses the user's input and saves their inputs in the class.
 - [ExerciseManager](../src/main/java/byteceps/processing/ExerciseManager.java): Manages all the exercises stored in memory.
 - [WorkoutManager](../src/main/java/byteceps/processing/WorkoutManager.java): Manages all the workouts in memory.
 - [HelpMenuManager](../src/main/java/byteceps/processing/HelpMenuManager.java): Displays the help messages to the user.
@@ -118,8 +118,8 @@ The `ActivityManager` and inheritors are responsible for managing an `ArrayList`
 1. `add()`: Adding an activity to the `ArrayList`
 2. `delete()`: Deleting an activity from the `ArrayList`
 3. `retrieve()`: Retrieving an activity from the `ArrayList` by name
-4. `getListString()`: Get the string containing all the activities contained in the `ActivityManager`.
-5. `execute()`: Execute all commands related to the `ActivityManager` and return the required user input.
+4. `getListString()`: Getting the string containing all the activities contained in the `ActivityManager`.
+5. `execute()`: Executing all commands related to the `ActivityManager` and returning the required user input.
 
 ![ActivityManagerClassDiagram](diagrams/ActivityManagerClassDiagram.svg)
 
@@ -272,12 +272,12 @@ The sequence diagram below gives the high-level overview of the command `program
 ![](./diagrams/addExerciseLog.svg)
 
 1. After input validation, the `execute()` method of `WeeklyProgramManager` calls the `executeLogAction()` method
-2. This method then calls the `.addWorkoutLog()` function of the `WorkoutLogManager`, of which is elaborated below.
+2. This method then calls the `addWorkoutLog()` function of the `WorkoutLogManager`, of which is elaborated below.
 3. Finally, the `messageToUser` is returned to the `UserInterface`.
 
 To dive deeper into how the `WorkoutLogsManager` works, we must first understand the several layers that are required to be implemented in order for this feature to work.
-1. Exercises needs to be logged, including the weight(s) that the user has completed, as well as the number of sets and repetitions completed in the exercise.
-2. These exercises exist as a set (referred to as "exercise logs"), supposedly tied to a workout plan that the user has created in the application, and has a unique date that the user did their workout on.
+1. Exercises need to be logged, including the weight(s) that the user has completed, as well as the number of sets and repetitions completed for the exercises.
+2. These exercises exist as a set (referred to as "exercise logs"), supposedly tied to a workout plan that the user has created in the application, and have a unique date that the user did their workout on.
 3. These workouts exist again as a set (referred to as "workout logs"), with their unique identifiers being the date that the user completed the workout. 
 
 The implementation thus is as follows:
@@ -294,7 +294,7 @@ The implementation thus is as follows:
 **Step 2 - Adding a Workout Log**
 - The workout date and name is then passed to the `addWorkoutLog()` method of `WorkoutLogsManager`
 - A new instance of a `WorkoutLog` is created and added into the `LinkedHashSet` of the `WorkoutLogsManager`
-  - As this method might be called multiple times as a workout has multiple exercise logs, thus, the adding of the `WorkoutLog` silently fails
+  - As this method might be called multiple times, because a workout has multiple exercise logs, the adding of the `WorkoutLog` silently fails
   - This `WorkoutLog` contains a `LinkedHashSet` of a variable number of `ExerciseLog`.
 
 **Step 3 - Adding an Exercise Log**
@@ -359,10 +359,10 @@ How the command `help` is processed and executed will be described below. This i
 The user’s input is received and processed by ByteCeps, which involves parsing the command through the `Parser` class. The user initiates the process by inputting the command `help`.
 
 **Step 2 - Command Identification:**
-The `Parser` class determines the type of help operation and extracts any necessary arguments. In this case, the `help` is recognised as the command.
+The `Parser` class determines the type of help operation and extracts any necessary parameters. In this case, the `help` is recognised as the command.
 
-**Step 3 - Command Validation**: The input is then validated using `HelpValidator` class to ensure that the arguments provided meet the expected format and criteria for processing.
-Here, validation will fail as `help` is not accompanied by any arguments. An exception, with an error message specifying this, is thrown. 
+**Step 3 - Command Validation**: The input is then validated using `HelpValidator` class to ensure that the parameters provided meet the expected format and criteria for processing.
+Here, validation will fail as `help` is not accompanied by any parameters. An exception, with an error message specifying this, is thrown. 
 
 **Step 4 - Command Execution**: The appropriate action is taken by the `HelpMenuManager` class.
 - Catch Validation Exception: The `HelpMenuManager` proceeds to catch this exception, and check the error message is as expected.
@@ -376,7 +376,7 @@ Here, validation will fail as `help` is not accompanied by any arguments. An exc
 This is a sequence diagram of the command `help` provided to visually illustrate the described example above.
 ![](./diagrams/helpGuidanceMessage.svg)
 
-#### Viewing an flag's help menu
+#### Viewing a flag's help menu
 If the user enters the command `help /COMMAND_TYPE` where `COMMAND_TYPE` is one of the 3 possible flags:
 1. `exercise`
 2. `workout`
@@ -390,9 +390,9 @@ How the command `help /program` is processed and executed will be described belo
 The user’s input is received and processed by ByteCeps, which involves parsing the command through the `Parser` class. The user initiates the process by inputting the command `help /program`.
 
 **Step 2 - Command Identification:**
-The `Parser` class determines the type of help operation and extracts any necessary arguments. In this case, the `help` is recognised as the command,`program` is a flag.
+The `Parser` class determines the type of help operation and extracts any necessary parameters. In this case, the `help /program` is recognised as the command.
 
-**Step 3 - Command Validation**: The input is then validated using `HelpValidator` class to ensure that the arguments provided meet the expected format and criteria for processing.
+**Step 3 - Command Validation**: The input is then validated using `HelpValidator` class to ensure that the parameters provided meet the expected format and criteria for processing.
 If validation fails, an exception is thrown with an accompanying error message. If validation succeeds, command execution proceeds.
 
 **Step 4 - Command Execution**: The appropriate action is taken by the `HelpMenuManager` class.
@@ -413,9 +413,9 @@ How the command `help /exercise 1` is processed and executed will be described b
 The user’s input is received and processed by ByteCeps, which involves parsing the command through the `Parser` class. The user initiates the process by inputting the command `help /exercise 1`.
 
 **Step 2 - Command Identification:**
-The `Parser` class determines the type of help operation and extracts any necessary arguments. In this case, the `help` is recognised as the command,`exercise` and `1` are a flag-parameter pair.
+The `Parser` class determines the type of help operation and extracts any necessary arguments. In this case, the `help /exercise` is recognised as the command, and `1` is recognised as the parameter.
 
-**Step 3 - Command Validation**: The input is then validated using `HelpValidator` class to ensure that the arguments provided meet the expected format and criteria for processing.
+**Step 3 - Command Validation**: The input is then validated using `HelpValidator` class to ensure that the parameters provided meet the expected format and criteria for processing.
 If validation fails, an exception is thrown with an accompanying error message. If validation succeeds, command execution proceeds.
 
 **Step 4 - Command Execution**: The appropriate action is taken by the `HelpMenuManager` class.
@@ -430,14 +430,14 @@ This is a sequence diagram of the command `help /exercise 1` provided to visuall
 ![](./diagrams/helpMenuCommandFormat.svg)
 
 ### The `Storage` class
-   A `Storage` object is responsible to reading and writing to `.json` files so that user data is saved between sessions.
+   A `Storage` object is responsible for reading from and writing to `.json` files, so that user data is saved in between sessions.
 
 #### Overview: Saving data to `data.json`
 The `storage.save()` method is called with the `ExerciseManager`, `WorkoutManager`, `WeeklyProgramManager` and `WorkoutLogsManager` objects being passed in as input.
 ![](./diagrams/saveStorage.svg)
 **NOTE**: plantUML does not allow for termination of lifelines after destroying an object (`:FileWriter`), but note that the lifeline should end after the red cross.
 1. An empty `JSONObject`, `jsonArchive`, is created.
-2. `ExerciseManager` and `WorkoutManager` objects have their list of `Activity`s converted into an `Array`, which is then `.put()` into `jsonArchive`.
+2. `ExerciseManager` and `WorkoutManager` objects have their list of multiple `Activity` classes converted into an `Array`, which is then `.put()` into `jsonArchive`.
 3. `WeeklyProgramManager` and `WorkoutLogsManager` objects have their own `exportToJSON` method which is called. The results are again `.put()` into `jsonArchive`.
 4. A `FileWriter` object is created, which writes `jsonArchive` converted to a `String` to the appropriate `filePath`.
 5. The `Storage` object calls the `UserInterface` directly to print the success message.
@@ -464,7 +464,7 @@ The loading of other `ActivityManager` objects is similar in nature.
 
 
 ### The `CascadingDeletionProcessor` class
-This class is a utility class that is responsible for handling cascading deletions (eg. when an exercise assigned to an existing workout is deleted from `ByteCeps` by the user).
+This class is a utility class that is responsible for handling cascading deletions (e.g., when an exercise assigned to an existing workout is deleted from `ByteCeps` by the user).
 It removes the required `Workout`/`Exercise` objects from the `Workout`/`WeeklyProgramManager` silently whenever a `delete` command is called.
 Its only public method, `checkForCascadingDeletions()`, is run after executing a parsed command.
 
@@ -495,7 +495,7 @@ ByteCeps offers a streamlined and comprehensive platform to manage exercise rout
 
 1. Streamlined Exercise Management: ByteCeps simplifies the organization of exercise routines by providing a user-friendly interface to add, edit, delete, list and search exercises effortlessly.
 2. Effortless Workout Planning: Create personalized workout plans by assigning exercises to specific days with intuitive CLI commands, ensuring organized and effective training sessions tailored to your needs.
-3. Flexible Program Adaptation: Seamlessly adjust workout plans and schedules as needed with the ability to add, remove, or modify exercises on the fly, providing flexibility and adaptability to your evolving fitness journey.
+3. Flexible Program Adaptation: Seamlessly adjust workout plans and schedules as needed, with the ability to add, remove, or modify exercises on the fly, providing flexibility and adaptability to your evolving fitness journey.
 4. Comprehensive Progress Tracking: Log and monitor workout performance, including weights, sets, and reps, with detailed exercise logs and historical data, enabling you to track progress, identify trends, and stay motivated.
 
 With ByteCeps, achieve your fitness objectives efficiently, effectively, and enjoyably, unlocking your full potential for a healthier, fitter lifestyle.
@@ -531,7 +531,7 @@ With ByteCeps, achieve your fitness objectives efficiently, effectively, and enj
 
 ## Non-Functional Requirements
 
-1. BYTE-CEPS should work on Windows, macOS and Linux that has Java 11 installed.
+1. BYTE-CEPS should work on Windows, macOS and Linux where Java 11 is installed.
 2. BYTE-CEPS should be able to store data locally.
 3. BYTE-CEPS should be able to work offline.
 4. BYTE-CEPS should be easy to use.
